@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Leftside = (props) => {
     return (
         <Container>
-            <Artcard>
+            <ArtCard>
                 <UserInfo>
                     <CardBackground />
                     <a>
@@ -29,7 +29,15 @@ const Leftside = (props) => {
                         <span>My Items</span>
                     </span>
                 </Item>
-            </Artcard>
+            </ArtCard>
+            <CommunityCard>
+                <a><span>Groups</span></a>
+                <a>
+                    <span>Events <img src="/images/plus-icon.svg" alt="Add" /></span>
+                </a>
+                <a><span>Follow Hashtags</span></a>
+                <a><span>Discover More</span></a>
+            </CommunityCard>
         </Container>
     );
 };
@@ -38,7 +46,7 @@ const Container = styled.div`
     grid-area: leftside;
 `;
 
-const Artcard = styled.div`
+const ArtCard = styled.div`
     text-align: center;
     overflow: hidden;
     margin-bottom: 8px;
@@ -47,18 +55,18 @@ const Artcard = styled.div`
     transition: box-shadow 83ms;
     position: relative;
     border: none;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 15%), 0 0 2px rgb(0 0 0 / 20%);
 `;
 
 const UserInfo = styled.div`
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-    padding: 12px 12px 16px;
+    padding: 12px;
 `;
 
 const CardBackground = styled.div`
     background: url("/images/card-bg.svg");
     background-position: center;
-    background-size: 462px;
+    background-size: cover;
     height: 54px;
     margin: -12px -12px 0;
 `;
@@ -111,7 +119,7 @@ const Widget = styled.div`
         }
 
         img {
-            width: 24px;
+            width: 24px; 
             height: 24px;
         }
     }
@@ -135,15 +143,13 @@ const WidgetContent = styled.div`
 `;
 
 const Item = styled.a`
-    border-color: rgba(0, 0, 0, 0.8);
-    display: block;
     text-align: left;
     padding: 12px;
     font-size: 12px;
-    display: block;
     color: rgba(0, 0, 0, 0.9);
     cursor: pointer;
     transition: background-color 0.3s ease;
+
 
     &:hover {
         background-color: rgba(0, 0, 0, 0.05);
@@ -166,4 +172,44 @@ const Item = styled.a`
     }
 `;
 
+const CommunityCard = styled(ArtCard)`
+    padding: 8px 0;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    cursor: pointer;
+
+    a {
+        color: #333;
+        padding: 4px 12px;
+        font-size: 12px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            color: #0a66c2;
+        }
+
+        &:last-child {
+            border-top: 1px solid #d6cec2;
+            padding: 12px;
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        span {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 15px;
+
+            img {
+                width: 16px;
+                height: 16px;
+            }
+        }
+    }
+`;
+
 export default Leftside;
+

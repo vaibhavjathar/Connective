@@ -14,7 +14,7 @@ const Login = (props) => {
          </Nav>
          <Section> 
             <Hero> 
-                <h1> Welcome to your professional community</h1> 
+                <h2>Welcome to Connective: Your growth starts with a connection!</h2> 
             <img src="/images/hero-login.svg" alt=" " />
             </Hero>
             <Form>
@@ -116,13 +116,13 @@ margin: auto;
 
 const Hero = styled.div`
     width: 100%;
-    h1{
+    h2{
         padding-bottom: 0;
-        width: 55%;
-        font-size: 56px;
+        width: 100%;
+        font-size: 40px;
         color: #2977c9;
         font-weight: 200;
-        line-height: 70px;
+        line-height: 60px;
         @media (max-width: 768px){
         text-align: center;
         font-size: 20px;
@@ -133,11 +133,11 @@ const Hero = styled.div`
 
     img{
         /* z-index: -1; */
-        width: 700px;
-        height: 670px;
-        position: absolute;
-        bottom: -2px;
-        right: -150px;
+        width: 1200px;
+        height: 700px;
+        position: center;
+        bottom: -px;
+        right: -px;
         @media (max-width: 768px){
             top: 230px;
             width: initial;
@@ -147,7 +147,7 @@ const Hero = styled.div`
     }
 `;
 const Form = styled.div`
- margin-top: 100px;
+ margin-top: 10px;
  width: 408px;
  @media (max-width: 768px){
     margin-top: 20px;
@@ -175,10 +175,6 @@ const Google = styled.button`
 `;
 
 export default Login; 
-
-
-
-
 
 
 
