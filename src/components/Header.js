@@ -1,4 +1,6 @@
+import { connect } from "react-redux";
 import styled, { keyframes } from "styled-components";
+import { signOutAPI } from "../actions";
 
 const Header = (props) => {
     return (
@@ -18,49 +20,55 @@ const Header = (props) => {
                 <Nav>
                     <NavListWrap>
                         <NavList className="active">
-                            <a href="/home">
+                            <a href="#">
                                 <img src="/images/nav-home.svg" alt="Home" /> 
                                 <span>Home</span>
                             </a>
                         </NavList>
 
                         <NavList>
-                            <a href="/home">
+                            <a href="#">
                                 <img src="/images/user-networking.svg" alt="Home" /> 
                                 <span>My Network</span>
                             </a>
                         </NavList>
 
                         <NavList>
-                            <a href="/home">
+                            <a href="#">
                                 <img src="/images/chat.svg" alt="Home" /> 
                                 <span>Messaging</span>
                             </a>
                         </NavList>
 
                         <NavList>
-                            <a href="/home">
+                            <a href="#">
                                 <img src="/images/bell.svg" alt="Home" /> 
                                 <span>Notifications</span>
                             </a>
                         </NavList>
                         <User>
-                            <a>
-                                <img src="/images/user.svg" alt="" />
-                                <span>Me</span>
-                                {/* <img src="/images/down-icon.svg" alt="" /> */}
+                            <a href="#">
+                                { props.user && props.user.photoURL ? (
+                                    <img src={props.user.photoURL} alt=" "/>
+                                    ) : (
+                                    <img src="/images/user.svg" alt="" />)}
+                                <span>
+                                    Me
+                                    <img src="/images/down-icon.svg" alt="" />
+                                </span>
+                                
                             </a>
 
 
-                            <SignOut>
-                                <a>Sign Out</a>
+                            <SignOut onClick={() => props.signOut()}>
+                                <a href="#" >Sign Out</a>
                             </SignOut>
                         </User>
                         <Work>
-                            <a>
+                            <a href="#">
                                 <img src="/images/suitcase.svg" alt="" />
                                 <span>Work
-                                    {/* <img src="/images/down-icon.svg" alt="" /> */}
+                                    <img src="/images/down-icon.svg" alt="" />
                                 </span>
                             </a>
                         </Work>
@@ -187,7 +195,7 @@ const NavListWrap = styled.ul`
     list-style-type: none;
 
     .active {
-        span: after {
+        span:after {
             content: '';
             transform: scaleX(1);
             border-bottom: 2px solid var(--white, #fff);
@@ -268,6 +276,11 @@ const User= styled(NavList)`
  span {
     display: flex;
     align-items: center;
+    img {
+            width: 18px; 
+            height: 18px;
+            margin-left: 4px; 
+        }
  }
 
  &:hover{
@@ -282,6 +295,13 @@ const Work = styled(User)`
  border-left: 1px solid rgba(0, 0, 0, 0.08);
 `;
 
+const mapStateToProps = (state) =>{
+    return {
+        user: state.userState.user,
+    };
+};
 
-
-export default Header;
+const mapDispatchToProps = (dispatch) => ({
+    signOut: () => dispatch(signOutAPI()),
+});
+export default connect (mapStateToProps, mapDispatchToProps)(Header);
